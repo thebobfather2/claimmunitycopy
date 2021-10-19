@@ -1,0 +1,28 @@
+.reset-password-div{
+    position: relative;
+    left:75px;
+    top:50px;
+    display: none;
+}
+
+.change-user-div{
+    position: relative;
+    left:75px;
+    top:10px;
+    display: none;
+}
+
+.account-main label{
+    font-size: 13px;
+}
+
+.reset-password-div label{
+    font-size: 13px;
+    color: gray;
+}
+
+.change-contact-div label{
+    font-size: 13px;
+    color: gray;
+    font-weight: bold;
+}

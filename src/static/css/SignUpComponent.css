@@ -1,0 +1,18 @@
+.sign-up-img{
+    height: 100vh;
+    padding-left: 0;
+    width: 100%;
+}
+
+.sign-up-field{
+    width: 80%;
+    margin-left: 10px;
+}
+
+.sign-up-field-sm{
+    width: 80%;
+}
+
+.user-info{
+    overflow: hidden;
+}

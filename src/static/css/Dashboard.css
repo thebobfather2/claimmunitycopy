@@ -1,0 +1,39 @@
+.dashboard{
+    position: relative;
+    left: 100px;
+    top:25px;
+}
+
+.chart{
+    border: groove 2px lightgrey;
+    width: 545px;
+    float: left;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.chart-title{
+    background-color: #317ABB;
+    color: white;
+    width: 545px;
+    position: relative;
+    bottom:23px;
+    right: 22px;
+}
+
+.chart vl{
+    border-left: 1px solid lightgrey;
+    height: 100px;
+    position:absolute;
+    left: 0;
+    bottom:0;
+}
+
+.full-width{
+    width:95%;
+    height: 50px;
+}
+
+.title-full-width{
+    width:100%;
+}

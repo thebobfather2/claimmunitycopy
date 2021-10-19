@@ -1,0 +1,194 @@
+.contact-list-div{
+    position: relative;
+    left: 100px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    position: relative;
+    overflow: hidden;
+    top: 19px;
+    height: calc(100% - 38px);
+    margin: auto;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+.app-one {
+    background-color: #f7f7f7;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+.side {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.side-one {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    display: block;
+    top: 0;
+}
+
+.side-two {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    top: -100%;
+    left: -100%;
+    -webkit-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+}
+
+.sideBar {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #fff;
+    overflow-y: auto;
+    border: 1px solid #f7f7f7;
+    height: calc(100% - 120px);
+}
+
+.sideBar-body {
+    position: relative;
+    padding: 10px !important;
+    border-bottom: 1px solid #f7f7f7;
+    height: 72px;
+    margin: 0 !important;
+    cursor: pointer;
+    width: 100%;
+}
+
+.sideBar-body:hover {
+    background-color: #f2f2f2;
+}
+
+.sideBar-avatar {
+    text-align: center;
+    padding: 0 !important;
+}
+
+.avatar-icon img {
+    border-radius: 50%;
+    height: 49px;
+    width: 49px;
+}
+
+.sideBar-main {
+    padding: 0 !important;
+    width:100%;
+}
+
+.sideBar-main .row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sideBar-name {
+    padding: 10px !important;
+}
+
+.name-meta {
+    font-size: 100%;
+    padding: 1% !important;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000;
+}
+
+.sideBar-time {
+    padding: 10px !important;
+}
+
+/*Conversation*/
+
+.conversation {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100%;
+    /*width: 100%;*/
+    border-left: 1px solid rgba(0, 0, 0, .08);
+    /*overflow-y: auto;*/
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 700px) {
+    .app {
+        top: 0;
+        height: 100%;
+    }
+
+    .fa-2x {
+        font-size: 2.3em !important;
+    }
+    .sideBar {
+        height: calc(100% - 130px);
+    }
+    .sideBar-body {
+        height: 80px;
+    }
+    .sideBar-avatar {
+        text-align: left;
+        padding: 0 8px !important;
+    }
+    .avatar-icon img {
+        height: 55px;
+        width: 55px;
+    }
+    .sideBar-main {
+        padding: 0 !important;
+    }
+    .sideBar-main .row {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .sideBar-name {
+        padding: 10px 5px !important;
+    }
+    .name-meta {
+        font-size: 16px;
+        padding: 5% !important;
+    }
+    .sideBar-time {
+        padding: 10px !important;
+    }
+    .small-description{
+        font-size: 8px;
+        color: gray;
+    }
+
+    /*Conversation*/
+    .conversation {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: 100%;
+        border-left: 1px solid rgba(0, 0, 0, .08);
+    }
+}
+
+.contact-form{
+    display: none;
+}
+
+.fa-close{
+    font-size: 15px;
+}

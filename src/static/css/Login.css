@@ -1,0 +1,45 @@
+.image-container{
+    display: inline-block;
+    width: 75%;
+    vertical-align: top;
+    text-align: left;
+    float:left;
+}
+
+.image {
+    height: 100vmin;
+    width: 100%;
+    pointer-events: none;
+}
+
+.log-in-form{
+    display: inline-block;
+    width: 20%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.claimmunity-image{
+    width: 80%;
+    text-align: center;
+}
+
+span{
+    font-size: 10px;
+    text-align: center;
+}
+
+td {
+    padding: 5px 10px;
+}
+
+.form-credentials{
+    width: 270px;
+    margin: 5px 0;
+}
+
+label {
+    float-wrap: wrap;
+    margin-top: 0;
+    font-size: 10px;
+}

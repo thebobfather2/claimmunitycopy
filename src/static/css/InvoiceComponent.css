@@ -1,0 +1,65 @@
+body {
+    margin-top: 20px;
+    background: #eee;
+}
+
+.container-invoice {
+    position: relative;
+    left: 120px;
+}
+
+.invoice {
+    padding: 30px;
+}
+
+.invoice h2 {
+    margin-top: 0;
+    line-height: 0.8em;
+}
+
+.invoice .small {
+    font-weight: 300;
+}
+
+.invoice hr {
+    margin-top: 10px;
+    border-color: #ddd;
+}
+
+.invoice .table tr.line {
+    border-bottom: 1px solid #ccc;
+}
+
+.invoice .table td {
+    border: none;
+}
+
+.invoice .identity {
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+.invoice .identity strong {
+    font-weight: 600;
+}
+
+.grid {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    /*color: #666666;*/
+    border-radius: 2px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.field-label {
+    font-size: 13px;
+    text-align: left;
+    display: block;
+}
+
+table thead {
+    background-color: lightgrey;
+}

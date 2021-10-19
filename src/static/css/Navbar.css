@@ -1,0 +1,101 @@
+.nav-link{
+    position: relative;
+    left:80rem;
+}
+
+.top-bar{
+    position:relative;
+    top:10px;
+}
+
+.icon-button{
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height:50px;
+    color: #333333;
+    background-color: #dddddd;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+}
+
+.icon-button__badge{
+    position:absolute;
+    top:5px;
+    right:2px;
+    width: 20px;
+    height: 15px;
+    background: #317ABB;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.notification-container {
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    width: 500px;
+    max-width: calc(100% - 30px);
+    box-shadow: 0 5px 7px -1px #c1c1c1;
+    z-index: 99 !important;
+    background-color: #fff;
+    overflow-y: auto;
+    height: 500px;
+}
+
+.notification {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: #317ABB;
+    font-size: 12px;
+    text-align: left;
+    padding: 15px 0;
+    line-height: 15px;
+    margin-bottom: 5px;
+    animation: grow 0.5s ease-in forwards;
+}
+
+@keyframes grow {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.notification.hide {
+    animation: shrink 0.3s ease-out forwards;
+}
+
+@keyframes shrink {
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.notification strong {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.notification-info {
+    background-color: #fff;
+;
+}
+
+.unread{
+    font-size: 20px;
+}

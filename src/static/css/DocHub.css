@@ -1,0 +1,32 @@
+.doc-hub {
+    position: relative;
+    left: 100px;
+    top: 20px;
+    height: 100vh;
+    background-color: #F8F8F8;
+
+}
+
+.img-preview{
+    height: 200px;
+    width: 100%;
+}
+
+.img-large{
+    /*height: 100vh;*/
+    /*width: 100vw;*/
+    backdrop-filter: blur(100px);
+}
+
+.img-list{
+    position: relative;
+    left: 10px;
+    top: 80px;
+    width: 100%;
+    background-color: white;
+}
+
+.img-div{
+    border: 2px solid grey;
+    background-color: white;
+}
