@@ -141,8 +141,8 @@ class TaskBoardComponent extends Component {
             <div className="container">
 
                 <div className="page-top">
-                    <div className="pull-left text-white font-weight-bold">My Freight Incidents</div>
-                    <div className="pull-right">
+                    <div className="pull-left text-white font-weight-bold bg-app">My Freight Incidents</div>
+                    <div className="pull-right bg-app">
                         <button type="button" className="btn-light btn-rounded"
                                 onClick={this.createIncident}>+ Create New Incident
                         </button>
@@ -154,12 +154,12 @@ class TaskBoardComponent extends Component {
                                        id="search-input" placeholder="Search Incidents"/>
                                 {this.state.showClearSearch &&
                                 <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"> <i className="fa fa-times"
+                                        <div className="input-group-text"> <i className="fa fa-times bg-transparent"
                                                                                              onClick={this.clearSearch}/></div>
                                     </span>
                                 }
                                 <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"><i className="fa fa-search"
+                                        <div className="input-group-text"><i className="fa fa-search bg-transparent"
                                                                                             onClick={this.search}/></div>
                                     </span>
 

@@ -137,11 +137,16 @@ class InvoiceListComponent extends Component{
         });
 
 
-        return (<div className="container">
+        return <div className="container">
             <div className="page-top">
-                <div className="pull-left text-white font-weight-bold">Invoices</div>
-
-                <div className="row searchBox mt-5">
+                <div className="pull-left text-white font-weight-bold bg-app">Invoices</div>
+                <div className="pull-right bg-app">
+                    <button type="button"
+                            className="btn-rounded btn-light" onClick={() => this.props.history.push('task-board')}>
+                        View Incidents
+                    </button>
+                </div>
+                <div className="row searchBox">
                     <div className="col-sm-12 searchBox-inner">
                         <div className="input-group">
                             <input className="form-control py-2 border-right-0 border" type="search"
@@ -213,7 +218,7 @@ class InvoiceListComponent extends Component{
             </div>
             </div>
 
-        );
+
     }
 }
 

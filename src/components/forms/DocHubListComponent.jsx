@@ -129,8 +129,8 @@ class DocHubListComponent extends Component {
 
         return <div className="container">
             <div className="page-top">
-                <div className="pull-left text-white font-weight-bold">Documents & Images</div>
-                <div className="pull-right">
+                <div className="pull-left text-white font-weight-bold bg-app">Documents & Images</div>
+                <div className="pull-right bg-app">
                     <button type="button"
                             className="btn-rounded btn-light"  onClick={() => this.props.history.push(`/forms`)}>
                         View Forms
@@ -143,12 +143,12 @@ class DocHubListComponent extends Component {
                                    id="search-input" placeholder="Search Docs"/>
                             {this.state.showClearSearch &&
                             <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"> <i className="fa fa-times"
+                                        <div className="input-group-text"> <i className="fa fa-times bg-transparent"
                                                                                              onClick={this.clearSearch}/></div>
                                     </span>
                             }
                             <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"><i className="fa fa-search"
+                                        <div className="input-group-text"><i className="fa fa-search bg-transparent"
                                                                                             onClick={this.search}/></div>
                                     </span>
 
@@ -158,17 +158,17 @@ class DocHubListComponent extends Component {
 
                 <div className="table-responsive">
                     <table className="table table-responsive-lg">
-                        <thead className="table-header">
-                        <tr>
-                            <th className="th-sm">CLAIMMUNITY #
-                                <div className="stacked-icons">
+                        <thead>
+                        <tr className="table-header">
+                            <th className="th-sm app-color">CLAIMMUNITY #
+                                <div className="stacked-icons app-color">
                                     <i className="fa fa-fw fa-sort-asc"
                                        onClick={() => this.sortFieldDesc('claimmunityNumber')}/>
                                     <i className="fa fa-fw fa-sort-desc fa-margin-top"
                                        onClick={() => this.sortFieldAsc('claimmunityNumber')}/>
                                 </div>
                             </th>
-                            <th className="th-sm">TYPE
+                            <th className="th-sm app-color">TYPE
                                 <div className="stacked-icons">
                                     <i className="fa fa-fw fa-sort-asc"
                                        onClick={() => this.sortFieldDesc('type')}/>

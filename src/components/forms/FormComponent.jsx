@@ -712,7 +712,7 @@ class FormComponent extends Component {
 
                                 <div className="page-top">
                                     <div className="row btn-group float-sm-right">
-                                        <div className="col mr-0">
+                                        <div className="col mr-0 bg-app">
                                             <button type="button" className="btn-rounded btn-light"
                                                     onClick={() => this.props.history.push(`/forms`)}>
                                                 Go to forms
@@ -721,13 +721,13 @@ class FormComponent extends Component {
 
 
                                         {(this.state.formId > 0 && this.state.disabled === true) &&
-                                        <div className="col ml-0">
+                                        <div className="col ml-0 bg-app">
                                             <button type="button" onClick={this.enableFormForEdit}
                                                     className="btn-rounded btn-light">Edit
                                             </button>
                                         </div>}
                                         {(this.state.formId < 0 || this.state.disabled === false) &&
-                                        <div className="col ml-0">
+                                        <div className="col ml-0 bg-app">
                                             <button type="submit" className="btn-rounded btn-light">Save</button>
                                         </div>}
                                     </div>
@@ -827,12 +827,12 @@ class FormComponent extends Component {
                                         <div className="row row-line-height">
                                             <div className="col-sm-6 ml-0 pt-0">
                                                 <div className="form-group form-group-custom-claimant">
-                                                    <h5>Claimant</h5>
+                                                    <h6>Claimant</h6>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-group form-group-custom-claimant">
-                                                    <h5>Claim Payable To</h5>
+                                                    <h6>Claim Payable To</h6>
                                                 </div>
                                                 <div className="float-sm-right pr-5">
                                                     <input disabled={this.state.disabled} className="form-check-input"
@@ -1421,7 +1421,7 @@ class FormComponent extends Component {
 
             <div className="container-lg commodities">
                 <div className="card">
-                    <div className="card-header"><h5>Commodity Details</h5></div>
+                    <div className="card-header"><h4>Commodity Details</h4></div>
                     <div className="card-body">
                         <ListGroup>
                             {this.state.commodities.map((commodity, index) => {

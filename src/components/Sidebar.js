@@ -39,7 +39,7 @@ function Sidebar() {
                             {SidebarData.map((item, index) => {
                                 return (
                                     <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
+                                        <Link to={item.path} className={item.cName}>
                                             {item.icon}&nbsp;
                                             <span>{item.title}</span>
                                         </Link>

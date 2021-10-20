@@ -25,7 +25,7 @@ class LoginComponent extends Component {
 
         return (
 
-            <div>
+            <div className="container-lg">
 
                 <div className="image-container">
                     <img src={logIn} className="image" alt="logIn"/>
@@ -85,7 +85,6 @@ class LoginComponent extends Component {
             )
             .catch(
                 () => {
-                    console.log('Failed')
                     this.setState({
                         showSuccessfulMessage: false,
                         hasLoginFailed: true

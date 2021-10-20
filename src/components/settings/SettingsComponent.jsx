@@ -16,7 +16,7 @@ class SettingsComponent extends Component {
     }
 
     render() {
-        return <div className="container app contact-list-div">
+        return <div className="container app settings-div">
             <div className="col-sm-4 side">
                 <div className="side-one">
 

@@ -53,25 +53,6 @@ class DocHubComponent extends Component {
         </div>
     }
 
-    // displayFullImage(document){
-    //     return <div id="full">
-    //         <dialog
-    //             className="dialog"
-    //             style={{ position: 'absolute' }}
-    //             open
-    //             onClick={() => this.setState(
-    //                 {preview: !this.state.preview, fullImageId: ''})}                                       >
-    //             <img
-    //                 className="image"
-    //                 src={document.fullUrl}
-    //                 onClick={() => this.setState(
-    //                     {preview: !this.state.preview, fullImageId: ''})}
-    //             />
-    //         </dialog>
-    //     </div>
-    // }
-
-
     componentDidMount() {
         this.getAllDocuments();
     }

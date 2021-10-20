@@ -12,20 +12,20 @@
 
 .commodity-select{
     text-align: left;
-    width:60px;
-    padding-left: 10px;
+    width:70px;
+    margin-left: 5px;
     margin-right: 10px;
 }
 
 .commodity-select-large{
     text-align: left;
-    width:80px;
+    width:100px;
     padding-left: 10px;
     margin-right: 10px;
 }
 
 .commodity-textarea{
-    width: 320px;
+    width: 275px;
     font-size: 12px;
 }
 

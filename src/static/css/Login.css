@@ -1,5 +1,4 @@
 .image-container{
-    display: inline-block;
     width: 75%;
     vertical-align: top;
     text-align: left;
@@ -7,7 +6,7 @@
 }
 
 .image {
-    height: 100vmin;
+    height: 100%;
     width: 100%;
     pointer-events: none;
 }

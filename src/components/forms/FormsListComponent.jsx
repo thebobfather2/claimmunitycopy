@@ -156,8 +156,8 @@ class FormsListComponent extends Component {
 
         return <div className="container">
             <div className="page-top">
-                <div className="pull-left text-white font-weight-bold">Forms</div>
-                <div className="pull-right">
+                <div className="pull-left text-white font-weight-bold bg-app">Forms</div>
+                <div className="pull-right bg-app">
                     <button type="button"
                             className="btn-rounded btn-light" onClick={() => this.props.history.push('doc-hub')}>
                         View Documents & Images
@@ -170,12 +170,12 @@ class FormsListComponent extends Component {
                                    id="search-input" placeholder="Search Forms"/>
                             {this.state.showClearSearch &&
                             <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"> <i className="fa fa-times"
+                                        <div className="input-group-text"> <i className="fa fa-times bg-transparent"
                                                                                              onClick={this.clearSearch}/></div>
                                     </span>
                             }
                             <span className="input-group-append">
-                                        <div className="input-group-text bg-transparent"><i className="fa fa-search"
+                                        <div className="input-group-text"><i className="fa fa-search bg-transparent"
                                                                                             onClick={this.search}/></div>
                                     </span>
 

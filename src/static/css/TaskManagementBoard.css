@@ -1,5 +1,4 @@
-/* Some Sass variables */
-body {
+.task-management-board {
     margin: 0;
     line-height: 1.3em;
     overflow-y: auto !important;
@@ -56,6 +55,7 @@ body {
 
 .icon {
     float: right;
+    background-color: #F2F2F2;
 }
 
 .list ul {

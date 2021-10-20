@@ -56,7 +56,7 @@ class CreateIncidentComponent extends Component {
         return <div className="container">
 
             <div className="page-top">
-                <div className="pull-right">
+                <div className="pull-right bg-app">
                     <button type="button" className="btn-rounded btn-light"
                             onClick={() => this.props.history.push(`/task-board`)}>View Incidents
                     </button>

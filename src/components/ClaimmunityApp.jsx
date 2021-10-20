@@ -21,7 +21,7 @@ import ActivateUserComponent from "./authentication/ActivateUserComponent";
 function ClaimmunityApp() {
 
     return (
-            <div className="claimmunity">
+            <div>
 
                 <div>
                     <Router>

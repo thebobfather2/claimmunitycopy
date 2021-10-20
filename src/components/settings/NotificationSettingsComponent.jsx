@@ -15,7 +15,6 @@ class NotificationSettingsComponent extends Component {
     }
 
     updateConfiguration(id, event){
-        console.log(`Updating configuration with ID ${id} and value ${event.target.checked}`)
         ConfigurationDataService.updateUserConfigurationValue(id, event.target.checked)
             .then(() => this.loadUserConfigurations())
     }
@@ -40,7 +39,6 @@ class NotificationSettingsComponent extends Component {
             {
                 this.state.configurations.map(
                     configuration => {
-                        console.log(configuration.value)
                         return <div className="row">
 
                             <div className="col-xs-2 col-md-2">

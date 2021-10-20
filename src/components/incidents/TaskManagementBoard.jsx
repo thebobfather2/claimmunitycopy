@@ -192,10 +192,10 @@ class TaskManagementBoard extends Component {
 
     render() {
 
-        return <div className="container">
+        return <div className="container task-management-board">
 
             <div className="page-top">
-                <div className="pull-left">
+                <div className="pull-left bg-app">
                     <button type="button" className="btn-rounded btn-light"
                             onClick={() => this.props.history.push(`/task-board`)}>Go To Incidents
                     </button>
@@ -241,7 +241,7 @@ class TaskManagementBoard extends Component {
                             <div className="col ml-4">
                                 <div className="form-group">
                                     <label htmlFor="members"><BsPersonPlusFill size="20"/><span className="label-icon">Assign Member</span></label>
-                                    <select className="form-control input-sm" id="assignedTo" name="assignedTo" onChange={this.handleChange}>
+                                    <select className="input select mt-0" id="assignedTo" name="assignedTo" onChange={this.handleChange}>
                                         {this.state.members.map(
                                             user => {
                                                 return  user.id === this.state.assignedTo ?
