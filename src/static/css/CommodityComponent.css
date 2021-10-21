@@ -15,13 +15,19 @@
     width:70px;
     margin-left: 5px;
     margin-right: 10px;
+    font-size: 13px;
+    height: 25px;
+    margin-top: 1px;
 }
 
 .commodity-select-large{
     text-align: left;
     width:100px;
-    padding-left: 10px;
+    margin-left: 5px;
     margin-right: 10px;
+    font-size: 13px;
+    height: 25px;
+    margin-top: 1px;
 }
 
 .commodity-textarea{

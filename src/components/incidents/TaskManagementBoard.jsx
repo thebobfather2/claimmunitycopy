@@ -192,7 +192,7 @@ class TaskManagementBoard extends Component {
 
     render() {
 
-        return <div className="container task-management-board">
+        return <div className="container">
 
             <div className="page-top">
                 <div className="pull-left bg-app">
@@ -318,16 +318,14 @@ class TaskManagementBoard extends Component {
                                                         subTask =>
                                                             <li>
 
-                                                                <div className="clock">
-                                                                    <span><AiFillClockCircle/>{moment(subTask.dueByDate).format('ddd D')}</span>
+                                                                <div >
+                                                                    <span><AiFillClockCircle/>{moment(subTask.dueByDate).format('ddd D')}<br/></span>
                                                                 </div>
-                                                                <br/>
 
                                                                 {!subTask.href && subTask.name}
                                                                 {subTask.href &&
                                                                 <Link to={subTask.href}>{subTask.name}</Link>}
-
-                                                                <div style={{float: 'right'}}>
+                                                                <div className="pull-right">
 
                                                                     {!subTask.completed &&
                                                                     <AiOutlineCheckSquare title="Mark as complete"
@@ -379,7 +377,7 @@ class TaskManagementBoard extends Component {
                         <ul>
                             {this.state.incidentType === 'OSD' &&
                             <button type="button" disabled={this.state.completionPercentage !== 100}
-                                    className="btn btn-primary"
+                                    className="btn btn-primary pr-1"
                                     onClick={() => this.updateIncidentStatus(this.state.incidentId, 5, 'CLAIM', null)}>+
                                 Convert to claim</button>
                             }

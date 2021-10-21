@@ -27,46 +27,53 @@ class LoginComponent extends Component {
 
             <div className="container-lg">
 
-                <div className="image-container">
-                    <img src={logIn} className="image" alt="logIn"/>
+                <div className="form-row">
+
+                    <div className="image-container">
+                        <img src={logIn} className="image" alt="logIn"/>
+                    </div>
+
+                    <div className="col-sm-3">
+                        {this.state.hasLoginFailed &&
+                        <div className="alert-warning" role="alert">Invalid credentials</div>}
+
+                        <div className="form-row ml-2 mt-3 mb-5">
+                            <img src={claimmunity} className="claimmunity-image" alt="claimmunity"/>
+                        </div>
+
+                        <div className="form-row ml-2 mb-3">
+                            <input type="text" className="sign-up-field" id="username" name="username" placeholder="username"
+                                   onChange={this.handleChange}/>
+                        </div>
+
+                        <div className="form-row ml-2 mb-3">
+                            <input type="password" className="sign-up-field" id="password" name="password" placeholder="password"
+                                   onChange={this.handleChange}/>
+                        </div>
+
+                        <div className="form-row ml-2 mb-3" >
+                            <div className="col-sm-5">
+                                <input type="checkbox" className="form-check-input" id="remember"/>
+                                <label className="form-check-label" htmlFor="remember">Remember me</label>
+                            </div>
+                            <div className="col-sm-5 ml-1">
+                                <button type="button" className="btn btn-primary pull-right"
+                                        onClick={this.loginClicked}>Sign in
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="form-row ml-4 mb-1">
+                            <span><Link to="/forgot-password">Forgot password</Link></span>
+                        </div>
+
+                        <div className="form-row ml-4">
+                            <span>Create a <Link to="/sign-up">Claimmunity account</Link></span>
+                        </div>
+
+                    </div>
+                    
                 </div>
-
-                <div className="log-in-form">
-
-                    <table>
-                            <tbody>
-                            <tr>
-                                <td><img src={claimmunity} className="claimmunity-image" alt="claimmunity"/></td>
-                            </tr>
-                            {this.state.hasLoginFailed && <div className="alert-warning" role="alert">Invalid credentials</div>}
-                            <tr>
-                                <td><input type="text" className="form-credentials mt-5" id="username" name="username" placeholder="username" onChange={this.handleChange}/></td>
-                            </tr>
-                            <tr>
-                                <td><input type="password" className="form-credentials" id="password" name="password" placeholder="password" onChange={this.handleChange}/></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div className="form-check">
-                                        <input type="checkbox" className="form-check-input" id="remember"/>
-                                            <label className="form-check-label" htmlFor="remember">Remember me</label>
-                                        <button type="button" className="btn btn-primary float-md-right" onClick={this.loginClicked}>Sign in</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span><Link to="/forgot-password">Forgot password</Link></span></td>
-                            </tr>
-
-                            <tr>
-                                <td><span>Create a <Link to="/sign-up">Claimmunity account</Link></span>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                </div>
-
             </div>
         )
     }
@@ -76,12 +83,10 @@ class LoginComponent extends Component {
         AuthenticationService
             .executeJwtAuthenticationService(this.state.username, this.state.password)
             .then(
-
                 (response) => {
                     AuthenticationService.registerSuccessfulLogin(this.state.username, response.data.token)
                     this.props.history.push(`/dashboard`) //react router history API - check it out
                 }
-
             )
             .catch(
                 () => {
@@ -97,7 +102,7 @@ class LoginComponent extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-        if (this.state.hasLoginFailed){
+        if (this.state.hasLoginFailed) {
             this.setState({
                 hasLoginFailed: false
             })

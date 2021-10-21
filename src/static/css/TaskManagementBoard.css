@@ -1,4 +1,4 @@
-.task-management-board {
+body {
     margin: 0;
     line-height: 1.3em;
     overflow-y: auto !important;
@@ -8,7 +8,7 @@
     height: 100vh;
     color: #eee;
     position: fixed;
-    top: 10em;
+    top: 12em;
     left: 250px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .list {
-    width: 230px;
+    width: 240px;
     /*height: calc(100% - 10px - 17px);*/
     height: 400px;
 }
@@ -75,7 +75,7 @@
 .list ul li {
     margin-bottom: 10px;
     text-align: left;
-    font-size: 14px;
+    font-size: 11px;
 }
 
 .list ul li img {
@@ -165,7 +165,7 @@
     /*overflow-x: hidden;*/
     top: 29em;
     bottom:0;
-    left: 230px;
+    left: 250px;
     position:fixed;
     overflow-y:scroll;
     overflow-x:hidden;

@@ -38,7 +38,7 @@
 
 .notification-container {
     position: fixed;
-    top: 60px;
+    top: 70px;
     right: 15px;
     width: 500px;
     max-width: calc(100% - 30px);

@@ -93,14 +93,14 @@ class InvoiceComponent extends Component {
 
                                 <div className="row pt-3">
                                     <div className="col text-left">
-                                        <h5>Invoice Number<br/>
+                                        <h6>Invoice Number<br/>
                                             <span className="small">{this.state.invoiceNumber}</span>
-                                        </h5>
+                                        </h6>
                                     </div>
                                     <div className="col text-right">
-                                        <h5>Invoice Date<br/>
+                                        <h6>Invoice Date<br/>
                                             <span className="small">{this.state.invoiceDate}</span>
-                                        </h5>
+                                        </h6>
                                     </div>
                                 </div>
 

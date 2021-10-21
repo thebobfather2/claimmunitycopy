@@ -220,7 +220,7 @@ function SignUpComponent(props) {
 
                 <div className="form-row ml-2 mb-3">
                     <select name="businessType" onChange={handleInputChange} value={values.businessType}
-                            id="businessType" className="sign-up-field">
+                            id="businessType" className="sign-up-field select">
                         <option value="" disabled selected hidden>Business Type</option>
                         <option value="SHIPPER">Shipper</option>
                         <option value="LSP">Logistics Service Provider</option>
