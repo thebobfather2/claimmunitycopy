@@ -6,6 +6,7 @@ import '../../static/css/Login.css';
 import table from '../../App.css';
 import {Link} from "react-router-dom";
 import AuthenticationService from "../../api/AuthenticationService";
+import resetPassword from "../../static/images/reset-password.jpg";
 
 class LoginComponent extends Component {
 
@@ -29,8 +30,8 @@ class LoginComponent extends Component {
 
                 <div className="form-row">
 
-                    <div className="image-container">
-                        <img src={logIn} className="image" alt="logIn"/>
+                    <div className="col-sm-9">
+                        <img src={logIn} className="sign-up-img border" alt="Sign Up"/>
                     </div>
 
                     <div className="col-sm-3">
@@ -51,13 +52,13 @@ class LoginComponent extends Component {
                                    onChange={this.handleChange}/>
                         </div>
 
-                        <div className="form-row ml-2 mb-3" >
-                            <div className="col-sm-5">
+                        <div className="form-row col-12">
+                            <div className="col-5" >
                                 <input type="checkbox" className="form-check-input" id="remember"/>
                                 <label className="form-check-label" htmlFor="remember">Remember me</label>
                             </div>
-                            <div className="col-sm-5 ml-1">
-                                <button type="button" className="btn btn-primary pull-right"
+                            <div className="col-6">
+                                <button type="button" className="btn btn-primary ml-2 pull-right"
                                         onClick={this.loginClicked}>Sign in
                                 </button>
                             </div>
