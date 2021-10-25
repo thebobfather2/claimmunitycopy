@@ -87,11 +87,6 @@ class CreateIncidentComponent extends Component {
                                                   className="alert-warning"/>
 
                                     <fieldset>
-                                        <label>Claimmunity #</label>
-                                        <Field className="form-control" type="text" name="claimmunityNumber"
-                                               readOnly/>
-                                    </fieldset>
-                                    <fieldset>
                                         <label>Incident type</label>
                                         <Field as='select' className="form-control" type="text" name="incidentType">
                                             <option value=""/>

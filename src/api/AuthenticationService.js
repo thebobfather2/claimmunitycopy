@@ -2,6 +2,7 @@ import axios from "axios";
 import {API_URL} from "../Constants";
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
+export const USER_TOKEN_SESSION_ATTRIBUTE_NAME = 'token'
 
 class AuthenticationService {
 
@@ -15,7 +16,7 @@ class AuthenticationService {
 
     registerSuccessfulLogin(username, token){
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
-        this.setupAxiosInterceptors(this.createJwtToken(token))
+        sessionStorage.setItem(USER_TOKEN_SESSION_ATTRIBUTE_NAME, this.createJwtToken(token));
     }
 
     createJwtToken(token){
@@ -24,6 +25,7 @@ class AuthenticationService {
 
     logout(){
         sessionStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+        sessionStorage.removeItem(USER_TOKEN_SESSION_ATTRIBUTE_NAME);
     }
 
     isUserLoggedIn(){
@@ -37,6 +39,14 @@ class AuthenticationService {
             return ''
         }
         return user;
+    }
+
+    getLoggedInUserToken(){
+        let token = sessionStorage.getItem(USER_TOKEN_SESSION_ATTRIBUTE_NAME)
+        if (token == null){
+            return ''
+        }
+        return token;
     }
 
     setupAxiosInterceptors(token){

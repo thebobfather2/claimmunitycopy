@@ -43,7 +43,8 @@ class TaskManagementBoard extends Component {
             members: [],
             dueByDate: '',
             description: '',
-            showForm: false
+            showForm: false,
+            hasCommodities: false
         }
 
         this.openForm = this.openForm.bind(this);
@@ -102,14 +103,17 @@ class TaskManagementBoard extends Component {
 
         TaskManagementDataService.getTaskManagementBoardTasks(this.state.incidentId)
             .then(
-                response =>
+                response =>  {
+                    let data = response.data;
+                    let taskTimeline = data.taskTimeLine;
                     this.setState(
                         {
-                            taskList: response.data.tasks, incidentType: response.data.incidentType,
-                            completionPercentage: response.data.completionPercentage,
-                            timelineMessages: response.data.taskTimeLine.messages,
-                            timelineMessageCount: response.data.taskTimeLine.totalCount
-                        })
+                            taskList: data.tasks, incidentType: data.incidentType,
+                            completionPercentage: data.completionPercentage,
+                            timelineMessages: taskTimeline.messages,
+                            timelineMessageCount: taskTimeline.totalCount,
+                            hasCommodities: data.hasCommodities
+                        })}
             )
             .catch(() => {
                 this.setState({
@@ -382,7 +386,7 @@ class TaskManagementBoard extends Component {
                                 Convert to claim</button>
                             }
                             {this.state.incidentType === 'CLAIM' &&
-                            <button type="button" disabled={this.state.completionPercentage !== 100}
+                            <button type="button" disabled={this.state.completionPercentage !== 100 || !this.state.hasCommodities}
                                     className="btn btn-primary" onClick={this.createInvoice}>+ Create Invoice
                             </button>
                             }

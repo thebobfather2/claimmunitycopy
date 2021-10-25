@@ -15,7 +15,11 @@ class NotificationSettingsComponent extends Component {
     }
 
     updateConfiguration(id, event){
-        ConfigurationDataService.updateUserConfigurationValue(id, event.target.checked)
+        let checked = 0
+        if (event.target.checked === true){
+            checked = 1;
+        }
+        ConfigurationDataService.updateUserConfigurationValue(id, checked)
             .then(() => this.loadUserConfigurations())
     }
 

@@ -3,10 +3,8 @@ import claimmunity from '../../static/images/claimmunity-logo.jpg';
 
 import React, {Component} from 'react';
 import '../../static/css/Login.css';
-import table from '../../App.css';
 import {Link} from "react-router-dom";
 import AuthenticationService from "../../api/AuthenticationService";
-import resetPassword from "../../static/images/reset-password.jpg";
 
 class LoginComponent extends Component {
 

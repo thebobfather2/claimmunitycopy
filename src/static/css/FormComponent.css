@@ -28,7 +28,7 @@
 }
 
 .form-label{
-    font-size: 14px;
+    font-size: 13px;
     color: grey;
     text-align: left;
 }
@@ -58,11 +58,12 @@
 }
 
 .form-control-date{
-    height: calc(1.3em + 0.5rem + 2px);
-    font-size: 0.875rem;
-    line-height: 1.2;
+    height: calc(1.2em + 0.5rem + 2px);
+    font-size: 11px;
+    line-height: 0.7;
     border-radius: 0.2rem;
     width: 200px;
+
 }
 
 .error{
@@ -74,7 +75,7 @@
 }
 
 .row-line-height{
-    line-height: 0.2;
+    line-height: 0.7;
 }
 
 .form-div hr {
@@ -82,7 +83,8 @@
     color: lightgrey;
     background-color: lightgrey;
     width: 100%;
-    height: 4px;
+    height: 5px;
+    margin-top: 0px;
 }
 
 .checkbox-claimant{
@@ -104,4 +106,11 @@
     position: relative;
     left:255px;
     top: 50px;
+}
+
+.field-textarea{
+    margin-top: -40px;
+    font-size: 13px;
+    color: grey;
+    text-align: left;
 }

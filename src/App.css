@@ -203,7 +203,7 @@ select {
 }
 
 .searchBox {
-  padding: 0 !important;
+  padding: 15px 0 0 0 !important;
   margin: 0 !important;
   height: 60px;
   width: 100%;

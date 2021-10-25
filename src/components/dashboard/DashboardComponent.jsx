@@ -66,6 +66,11 @@ class DashboardComponent extends Component {
                 })
             })
             .then(() => this.setState({mounted: true}))
+            .catch(() => function (error) {
+                if (error.response && error.response.status === 401) {
+                    this.props.history.push('/login')
+                }
+            })
     }
 
     render() {

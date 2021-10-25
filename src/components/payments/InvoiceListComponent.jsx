@@ -21,6 +21,16 @@ class InvoiceListComponent extends Component{
         this.sortFieldDesc = this.sortFieldDesc.bind(this);
         this.search = this.search.bind(this);
         this.clearSearch = this.clearSearch.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+    handleKeyDown(e){
+        if (e.key === 'Enter') {
+            this.search();
+        }
+        else if (e.keyCode === 27){
+            this.clearSearch();
+        }
     }
 
     getInvoices(){
@@ -150,7 +160,7 @@ class InvoiceListComponent extends Component{
                     <div className="col-sm-12 searchBox-inner">
                         <div className="input-group">
                             <input className="form-control py-2 border-right-0 border" type="search"
-                                   id="search-input" placeholder="Search Invoices"/>
+                                   id="search-input" placeholder="Search Invoices" onKeyDown={this.handleKeyDown}/>
                             {this.state.showClearSearch &&
                             <span className="input-group-append">
                                         <div className="input-group-text bg-transparent"> <i className="fa fa-times"

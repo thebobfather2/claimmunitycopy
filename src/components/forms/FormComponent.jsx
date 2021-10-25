@@ -825,12 +825,12 @@ class FormComponent extends Component {
                                     <>
 
                                         <div className="row row-line-height">
-                                            <div className="col-sm-6 ml-0 pt-0">
+                                            <div className="col-sm-6 ml-0 mt-3">
                                                 <div className="form-group form-group-custom-claimant">
                                                     <h6>Claimant</h6>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mt-3">
                                                 <div className="form-group form-group-custom-claimant">
                                                     <h6>Claim Payable To</h6>
                                                 </div>
@@ -839,8 +839,8 @@ class FormComponent extends Component {
                                                            type="checkbox"
                                                            id="sameAsClaimant"
                                                            onChange={() => this.setState({claimPayableToDisabled: !this.state.claimPayableToDisabled})}/>
-                                                    <label style={{position: 'relative', top: '10px'}}
-                                                           htmlFor="sameAsClaimant" className="mb-3">Same as
+                                                    <label
+                                                           htmlFor="sameAsClaimant" className="mb-3 mt-2">Same as
                                                         Claimant</label>
                                                 </div>
                                             </div>
@@ -870,7 +870,7 @@ class FormComponent extends Component {
                                         </div>
 
                                         <div className="row row-line-height">
-                                            <div className="form-group form-group-small pl-3 col-sm-4">
+                                            <div className="form-group form-group-small col-sm-4">
                                                 <label className="form-label">First Name</label>
                                                 <Field disabled={this.state.disabled}
                                                        id="claimantFirstName"
@@ -884,7 +884,7 @@ class FormComponent extends Component {
                                                        id="claimantLastName"
                                                        className="form-control form-control-sm field-margin-left"
                                                        type="text"
-                                                       name="claimantLastName" placeholder="Last Name"/>
+                                                       name="claimantLastName" placeholder=" Last Name"/>
                                             </div>
 
                                             <div className="col-sm-6 pl-5 pt-0">
@@ -953,7 +953,7 @@ class FormComponent extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className="form-group form-group-small pl-3 col-sm-4">
+                                            <div className="form-group form-group-small col-sm-4">
                                                 <label className="form-label required">State/Province</label>
                                                 <Field
                                                     disabled={this.state.disabled || this.state.claimPayableToDisabled}
@@ -1018,7 +1018,7 @@ class FormComponent extends Component {
                                         </div>
 
                                         <div className="row row-line-height">
-                                            <div className="form-group form-group-small col-sm-4 pl-3">
+                                            <div className="form-group form-group-small col-sm-4">
                                                 <label className="form-label required">State/Province</label>
                                                 <Field disabled={this.state.disabled}
                                                        id="claimantState"
@@ -1056,8 +1056,8 @@ class FormComponent extends Component {
                                                            name="claimantCountry"/>
                                                 </div>
                                             </div>
-                                            <div className="col pt-0" style={{marginTop: '-20px'}}>
-                                                <div className="form-group form-group-custom-claimant">
+                                            <div className="col">
+                                                <div className="form-group-custom-claimant" >
                                                     <hr/>
                                                 </div>
                                             </div>
@@ -1068,14 +1068,14 @@ class FormComponent extends Component {
                                                 <div className="form-group form-group-custom-claimant">
                                                 </div>
                                             </div>
-                                            <div className="col ml-2" style={{marginTop: '-40px'}}>
+                                            <div className="col ml-2 field-textarea">
                                                 <div className="form-group form-group-custom-claimant">
                                                     <label className="form-label font-weight-bold font-weight-bolder">Notes
                                                         & Comments</label>
                                                     <Field maxLength={this.state.maxChars} type="text"
                                                            disabled={this.state.disabled}
                                                            component="textarea"
-                                                           className="form-control mb-2" id="notes" name="notes"
+                                                           className="form-control" id="notes" name="notes"
                                                            rows="4"/>
                                                     {/*<p><span className="float-sm-right">Characters Left: {this.state.charsLeft} / {this.state.maxChars}</span></p>*/}
                                                 </div>
@@ -1221,14 +1221,14 @@ class FormComponent extends Component {
 
                                     <div className="row row-line-height ml-0">
 
-                                        <div className="form-group form-group-state first">
+                                        <div className="form-group form-group-state first mt-1">
                                             <label className="form-label required">State/Province</label>
                                             <Field disabled={this.state.disabled}
                                                    id="carrierState"
                                                    className="form-control form-control-sm" type="text"
                                                    name="carrierState"/>
                                         </div>
-                                        <div className="form-group form-group-zip field-margin-right">
+                                        <div className="form-group form-group-zip field-margin-right mt-1">
                                             <label className="form-label required">Zip</label>
                                             <Field disabled={this.state.disabled}
                                                    id="carrierZipCode"
@@ -1236,14 +1236,14 @@ class FormComponent extends Component {
                                                    name="carrierZipCode"/>
                                         </div>
 
-                                        <div className="form-group form-group-state">
+                                        <div className="form-group form-group-state mt-1">
                                             <label className="form-label required">State/Province</label>
                                             <Field disabled={this.state.disabled}
                                                    id="consignorState"
                                                    className="form-control form-control-sm" type="text"
                                                    name="consignorState"/>
                                         </div>
-                                        <div className="form-group form-group-zip field-margin-right">
+                                        <div className="form-group form-group-zip field-margin-right mt-1">
                                             <label className="form-label required">Zip</label>
                                             <Field disabled={this.state.disabled}
                                                    id="consignorZipCode"
@@ -1251,14 +1251,14 @@ class FormComponent extends Component {
                                                    name="consignorZipCode"/>
                                         </div>
 
-                                        <div className="form-group form-group-state">
+                                        <div className="form-group form-group-state mt-1">
                                             <label className="form-label required">State/Province</label>
                                             <Field disabled={this.state.disabled}
                                                    id="consigneeState"
                                                    className="form-control form-control-sm" type="text"
                                                    name="consigneeState"/>
                                         </div>
-                                        <div className="form-group form-group-zip">
+                                        <div className="form-group form-group-zip mt-1">
                                             <label className="form-label required">Zip</label>
                                             <Field disabled={this.state.disabled}
                                                    id="consigneeZipCode"
