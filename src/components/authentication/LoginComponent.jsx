@@ -79,6 +79,22 @@ class LoginComponent extends Component {
 
     loginClicked() {
 
+        if (this.state.username === ''){
+            this.setState({
+                showSuccessfulMessage: false,
+                hasLoginFailed: true
+            })
+            return;
+        }
+
+        if (this.state.password === ''){
+            this.setState({
+                showSuccessfulMessage: false,
+                hasLoginFailed: true
+            })
+            return;
+        }
+
         AuthenticationService
             .executeJwtAuthenticationService(this.state.username, this.state.password)
             .then(
