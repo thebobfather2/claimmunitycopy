@@ -156,7 +156,14 @@ class TaskManagementBoard extends Component {
 
     handleChange(event) {
         const target = event.target;
-        this.setState({[target.name]: target.value});
+
+        if (target.name === 'dueByDate' && Date.parse(target.value) < new Date()){
+            this.setState({[target.name]: new Date()});
+        }
+
+        else {
+            this.setState({[target.name]: target.value});
+        }
 
         if (this.state.taskErrorMessage !== '') {
             this.setState({
@@ -168,21 +175,21 @@ class TaskManagementBoard extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.subTaskName === ''){
+        if (this.state.subTaskName === '' || this.state.subTaskName === undefined){
             this.setState({
                 taskErrorMessage: 'Please provide a valid task name'
             })
             return;
         }
 
-        if (this.state.description === ''){
+        if (this.state.description === '' || this.state.description === undefined){
             this.setState({
                 taskErrorMessage: 'Please provide a valid task description'
             })
             return;
         }
 
-        if (this.state.dueByDate === ''){
+        if (this.state.dueByDate === '' || this.state.dueByDate === undefined){
             this.setState({
                 taskErrorMessage: 'Please provide a valid task due by date'
             })
