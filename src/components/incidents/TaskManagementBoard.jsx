@@ -44,7 +44,8 @@ class TaskManagementBoard extends Component {
             dueByDate: '',
             description: '',
             showForm: false,
-            hasCommodities: false
+            hasCommodities: false,
+            taskErrorMessage: ''
         }
 
         this.openForm = this.openForm.bind(this);
@@ -157,11 +158,37 @@ class TaskManagementBoard extends Component {
         const target = event.target;
         this.setState({[target.name]: target.value});
 
-        console.log(this.state.assignedTo)
+        if (this.state.taskErrorMessage !== '') {
+            this.setState({
+                taskErrorMessage: ''
+            })
+        }
     }
 
     handleSubmit(event) {
         event.preventDefault();
+
+        if (this.state.subTaskName === ''){
+            this.setState({
+                taskErrorMessage: 'Please provide a valid task name'
+            })
+            return;
+        }
+
+        if (this.state.description === ''){
+            this.setState({
+                taskErrorMessage: 'Please provide a valid task description'
+            })
+            return;
+        }
+
+        if (this.state.dueByDate === ''){
+            this.setState({
+                taskErrorMessage: 'Please provide a valid task due by date'
+            })
+            return;
+        }
+
         let subTask = {
             completed: false,
             deletable: true,
@@ -192,6 +219,9 @@ class TaskManagementBoard extends Component {
                     })
                 })
         this.closeForm()
+        this.setState({
+            taskErrorMessage: ''
+        })
     }
 
     render() {
@@ -218,6 +248,10 @@ class TaskManagementBoard extends Component {
                 <div className="form-popup" id="saveTaskForm">
 
                     <form className="form-container" onSubmit={this.handleSubmit}>
+
+                        {this.state.taskErrorMessage && <div className="alert-warning">
+                            {this.state.taskErrorMessage}
+                        </div>}
 
                         <div className="row ml-4">
                             <AiOutlineArrowRight size="30" color="gray"/>
