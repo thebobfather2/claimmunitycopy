@@ -11,7 +11,9 @@ import SignUpDataService from "../../api/SignUpDataService";
 function SignUpComponent(props) {
 
     const [errorMessage, setErrorMessage] = useState('')
+    const [successMessage, setSuccessMessage] = useState('')
     const [showUserPage, setShowUserPage] = useState(false)
+    const [privacyViewed, setPrivacyViewed] = useState(false)
 
     const [values, setValues] = useState({
         businessType: '',
@@ -39,14 +41,12 @@ function SignUpComponent(props) {
     const handleInputChange = (event) => {
         event.preventDefault()
 
-        if (event.target.name === 'workNumber' || event.target.name === 'mobileNumber'){
+        if (event.target.name === 'workNumber' || event.target.name === 'mobileNumber') {
             setValues((values) => ({
                 ...values,
                 [event.target.name]: formatPhone(event.target.value)
             }));
-        }
-
-        else {
+        } else {
             setValues((values) => ({
                 ...values,
                 [event.target.name]: event.target.value
@@ -82,12 +82,12 @@ function SignUpComponent(props) {
             return;
         }
 
-        if (!values.password || values.password.length < 8){
+        if (!values.password || values.password.length < 8) {
             setErrorMessage('Please enter valid password. Passwords should be at least 8 characters long')
             return;
         }
 
-        if (values.password !== values.confirmPassword){
+        if (values.password !== values.confirmPassword) {
             setErrorMessage('Passwords need to match')
             return;
         }
@@ -109,12 +109,12 @@ function SignUpComponent(props) {
         }
 
         const phonePattern = /^[1-9]\d{2}-\d{3}-\d{4}$/;
-        if (!values.workNumber.match(phonePattern)){
+        if (!values.workNumber.match(phonePattern)) {
             setErrorMessage('Please enter valid work number')
             return;
         }
 
-        if (!values.mobileNumber.match(phonePattern)){
+        if (!values.mobileNumber.match(phonePattern)) {
             setErrorMessage('Please enter valid mobile number')
             return;
         }
@@ -144,29 +144,34 @@ function SignUpComponent(props) {
             return;
         }
 
-        if (!values.tAndC){
+        if (!values.tAndC) {
             setErrorMessage('Please agree to the terms and conditions')
             return;
         }
 
-        let request =
-        {
-            businessType: values.businessType,
-            city: values.city,
-            companyName: values.companyName,
-            country: values.country,
-            firstName: values.firstName,
-            lastName: values.lastName,
-            mobileNumber: values.mobileNumber,
-            password: values.password,
-            state: values.state,
-            streetAddress1: values.address,
-            workEmail: values.workEmail,
-            workNumber: values.workNumber,
-            zipCode: values.zipCode
+        if (!privacyViewed) {
+            setErrorMessage('Please read the terms and conditions before signing up.')
+            return;
         }
+
+        let request =
+            {
+                businessType: values.businessType,
+                city: values.city,
+                companyName: values.companyName,
+                country: values.country,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                mobileNumber: values.mobileNumber,
+                password: values.password,
+                state: values.state,
+                streetAddress1: values.address,
+                workEmail: values.workEmail,
+                workNumber: values.workNumber,
+                zipCode: values.zipCode
+            }
         SignUpDataService.signUpUser(request)
-            .then(() => {forwardToLoginPage()})
+            .then(() => setSuccessMessage("Your account was successfully created. Please check your email to activate your account before logging in."))
             .catch(() => setErrorMessage('Error occurred while creating new user. Please contact us at support@claimmunity.com.'))
     }
 
@@ -196,6 +201,11 @@ function SignUpComponent(props) {
             3,
             6
         )}-${phoneNumber.slice(6, 10)}`;
+    }
+
+    const handlePrivacy = () => {
+        setPrivacyViewed(true);
+        setErrorMessage('');
     }
 
     return <div className="container-lg">
@@ -277,6 +287,11 @@ function SignUpComponent(props) {
                     </div>
                 </div>}
 
+                {successMessage !== '' && <div>
+                    <div className="alert-success mb-3">{successMessage}
+                    </div>
+                </div>}
+
                 <div className="form-row mt-2 mb-3">
                     <div>
                         <input name="firstName" onChange={handleInputChange} value={values.firstName}
@@ -327,12 +342,16 @@ function SignUpComponent(props) {
                 </div>
 
                 <div className="form-row ml-3 mt-2 mb-3">
-                    <input onChange={handleCheckbox} name="tAndC" defaultChecked={values.tAndC} id="tAndC" type="checkbox"/>
-                    <label className="ml-2" htmlFor="tAndC">I agree with the terms and conditions</label>
+                    <input onChange={handleCheckbox} name="tAndC" defaultChecked={values.tAndC} id="tAndC"
+                           type="checkbox"/>
+                    <label className="ml-2" htmlFor="tAndC">I agree with the <Link
+                        to={{pathname: "https://claimmunity.com/privacy"}} target="_blank" onClick={handlePrivacy}>terms
+                        and conditions</Link> </label>
                 </div>
 
                 <div className="form-row ml-3 mt-2 mb-4">
-                    <button onClick={handleSubmit} className="btn btn-primary sign-up-field-sm">Complete Sign Up</button>
+                    <button onClick={handleSubmit} className="btn btn-primary sign-up-field-sm">Complete Sign Up
+                    </button>
                 </div>
 
             </div>
