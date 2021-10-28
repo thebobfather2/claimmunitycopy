@@ -14,6 +14,7 @@ function SignUpComponent(props) {
     const [successMessage, setSuccessMessage] = useState('')
     const [showUserPage, setShowUserPage] = useState(false)
     const [privacyViewed, setPrivacyViewed] = useState(false)
+    const [termsViewed, setTermsViewed] = useState(false)
 
     const [values, setValues] = useState({
         businessType: '',
@@ -55,12 +56,6 @@ function SignUpComponent(props) {
 
         setErrorMessage('')
     };
-
-    const forwardToLoginPage = () => {
-        props.history.push({
-            pathname: '/login'
-        });
-    }
 
     const handleOrgSubmit = (event) => {
         event.preventDefault();
@@ -149,8 +144,14 @@ function SignUpComponent(props) {
             return;
         }
 
-        if (!privacyViewed) {
+
+        if (!termsViewed) {
             setErrorMessage('Please read the terms and conditions before signing up.')
+            return;
+        }
+
+        if (!privacyViewed) {
+            setErrorMessage('Please read the privacy policy before signing up.')
             return;
         }
 
@@ -205,6 +206,11 @@ function SignUpComponent(props) {
 
     const handlePrivacy = () => {
         setPrivacyViewed(true);
+        setErrorMessage('');
+    }
+
+    const handleTerms = () => {
+        setTermsViewed(true);
         setErrorMessage('');
     }
 
@@ -345,8 +351,9 @@ function SignUpComponent(props) {
                     <input onChange={handleCheckbox} name="tAndC" defaultChecked={values.tAndC} id="tAndC"
                            type="checkbox"/>
                     <label className="ml-2" htmlFor="tAndC">I agree with the <Link
-                        to={{pathname: "https://claimmunity.com/privacy"}} target="_blank" onClick={handlePrivacy}>terms
-                        and conditions</Link> </label>
+                        to={{pathname: "https://claimmunity.com/terms"}} target="_blank" onClick={handleTerms}>terms
+                        and conditions</Link> and <Link
+                        to={{pathname: "https://claimmunity.com/privacy"}} target="_blank" onClick={handlePrivacy}>privacy policy</Link> </label>
                 </div>
 
                 <div className="form-row ml-3 mt-2 mb-4">
