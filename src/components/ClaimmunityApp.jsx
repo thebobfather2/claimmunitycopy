@@ -17,6 +17,7 @@ import InvoiceListComponent from "./payments/InvoiceListComponent";
 import ContactListComponent from "./contacts/ContactListComponent";
 import SettingsComponent from "./settings/SettingsComponent";
 import ActivateUserComponent from "./authentication/ActivateUserComponent";
+import ContactUsComponent from "./authentication/ContactUsComponent";
 
 function ClaimmunityApp() {
 
@@ -30,6 +31,7 @@ function ClaimmunityApp() {
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
                             <Route path="/forgot-password" component={ForgotPasswordComponent}/>
+                            <Route path="/contact-us" component={ContactUsComponent}/>
                             <Route path="/sign-up" component={SignUpComponent}/>
                             <Route path="/activate/:id" component={ActivateUserComponent}/>
 
