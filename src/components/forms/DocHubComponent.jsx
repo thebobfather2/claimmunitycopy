@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import FileDataService from "../../api/FileDataService";
 import '../../static/css/DocHub.css';
-import {AiOutlineDelete} from "react-icons/ai";
+import {AiOutlineDelete, AiOutlineDownload} from "react-icons/ai";
 import moment from "moment";
 
 class DocHubComponent extends Component {
@@ -22,19 +22,25 @@ class DocHubComponent extends Component {
 
         this.getAllDocuments = this.getAllDocuments.bind(this)
         this.preview = this.preview.bind(this)
-        this.openWindow = this.openWindow.bind(this)
+        this.downloadFile = this.downloadFile.bind(this)
     }
 
-    openWindow(fullUrl){
+    downloadFile(fileName){
+        const FileDownload = require('js-file-download');
+
+        FileDataService.downloadFile(this.state.incidentId, fileName)
+            .then((response) => {
+                FileDownload(response.data, fileName);
+        });
     }
     preview(document){
 
         // if (!this.state.preview && this.state.fullImageId === document.id){
         //     return this.displayFullImage(document)
         // }
-
+        
         return <div className="col-sm-3 ml-3 mt-3 mr-3 mb-3 img-div">
-            <img alt={document.id} id={document.id} onClick={this.openWindow(document.fullUrl)}
+            <embed alt={document.id} id={document.id}
                  src={document.fullUrl} className="img-preview"/>
             <div className="font-weight-bold">{document.name}</div>
             <div>
@@ -49,6 +55,7 @@ class DocHubComponent extends Component {
                             })
                     }
                 }}/>
+                <AiOutlineDownload className="pull-right" title="download" onClick={() => this.downloadFile(document.name)}/>
             </div>
         </div>
     }
@@ -79,9 +86,6 @@ class DocHubComponent extends Component {
             this.state.selectedFile,
             this.state.selectedFile.name
         );
-
-        // Details of the uploaded file
-        console.log(this.state.selectedFile);
 
         FileDataService.uploadFile(formData, this.state.incidentId).then(() => this.getAllDocuments())
     };

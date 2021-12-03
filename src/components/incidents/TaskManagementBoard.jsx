@@ -370,10 +370,10 @@ class TaskManagementBoard extends Component {
                                                                 {!subTask.href && subTask.name}
                                                                 {subTask.href &&
                                                                 <Link to={subTask.href}>{subTask.name}</Link>}
-                                                                <div className="pull-right">
+                                                                <div className="pull-right actions">
 
                                                                     {!subTask.completed &&
-                                                                    <AiOutlineCheckSquare title="Mark as complete"
+                                                                    <AiOutlineCheckSquare size="15" title="Mark as complete"
                                                                                           onClick={() =>
                                                                                               TaskManagementDataService.updateSubTaskCompletionStatus(subTask.id, true)
                                                                                                   .then(this.populateBoard)
@@ -385,7 +385,7 @@ class TaskManagementBoard extends Component {
                                                                                           }/>}
 
                                                                     {subTask.completed &&
-                                                                    <AiFillCheckCircle style={{color: "green"}}
+                                                                    <AiFillCheckCircle size="15" style={{color: "green"}}
                                                                                        title="Completed"
                                                                                        onClick={() => {
                                                                                            TaskManagementDataService.updateSubTaskCompletionStatus(subTask.id, false)
@@ -397,11 +397,11 @@ class TaskManagementBoard extends Component {
                                                                                                })
                                                                                        }}/>}
 
-                                                                    {!subTask.completed && <FiEdit title="Edit"
-                                                                                                   onClick={() => this.editForm(subTask, task.id)}/>}
+                                                                    {!subTask.completed && <span><FiEdit title="Edit" size="15"
+                                                                                                   onClick={() => this.editForm(subTask, task.id)}/></span>}
 
                                                                     {!subTask.completed && subTask.deletable &&
-                                                                    <AiOutlineDelete title="Delete" onClick={() => {
+                                                                    <AiOutlineDelete size="15" title="Delete" onClick={() => {
                                                                         if (window.confirm('Are you sure you want to delete this task?')) {
                                                                             TaskManagementDataService.deleteSubTask(subTask.id).then(this.populateBoard)
                                                                                 .catch(() => {

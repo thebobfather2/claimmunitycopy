@@ -19,5 +19,9 @@ class FileDataService{
     deleteDocument(id, fileName){
         return axios.delete(`${API_URL}/docs/${id}?fileName=${fileName}`)
     }
+
+    downloadFile(incidentId, fileName){
+        return axios.get(`${API_URL}/docs/download/${incidentId}/${fileName}`, {responseType: 'blob'});
+    }
 }
 export default new FileDataService();
