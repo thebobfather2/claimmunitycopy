@@ -67,9 +67,10 @@ body {
 
 .list ul li {
     background-color: #fff;
-    padding: 10px;
+    padding: 10px 3px;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    height: 25%;
 }
 
 .list ul li {
@@ -145,7 +146,7 @@ body {
 .form-popup input.form-control {
     font-size: 12px;
     color: gray;
-    line-height: 1;
+    line-height: 1.5;
     padding-right: 10px;
 }
 
@@ -213,4 +214,9 @@ ul.timeline > li:before {
     left: 0;
     width: 20px;
     height: 20px;
+}
+
+.actions span{
+    padding-left: 2px;
+    padding-right: 2px;
 }

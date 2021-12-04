@@ -35,10 +35,6 @@ class DocHubComponent extends Component {
     }
     preview(document){
 
-        // if (!this.state.preview && this.state.fullImageId === document.id){
-        //     return this.displayFullImage(document)
-        // }
-        
         return <div className="col-sm-3 ml-3 mt-3 mr-3 mb-3 img-div">
             <embed alt={document.id} id={document.id}
                  src={document.fullUrl} className="img-preview"/>
@@ -55,7 +51,7 @@ class DocHubComponent extends Component {
                             })
                     }
                 }}/>
-                <AiOutlineDownload className="pull-right" title="download" onClick={() => this.downloadFile(document.name)}/>
+                {document.type !== 'pdf' && <AiOutlineDownload className="pull-right" title="download" onClick={() => this.downloadFile(document.name)}/>}
             </div>
         </div>
     }
