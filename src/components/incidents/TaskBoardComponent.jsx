@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {ProgressBar} from "react-bootstrap";
+import {Button, Modal, ProgressBar} from "react-bootstrap";
 import IncidentDataService from "../../api/IncidentDataService";
 import {CgFileDocument} from "react-icons/cg";
 import {FiTruck} from "react-icons/fi";
@@ -20,7 +20,12 @@ class TaskBoardComponent extends Component {
             sortedIncidents: [],
             message: '',
             currentPage: 1,
-            showClearSearch: false
+            showClearSearch: false,
+            showInviteUserModal: false,
+            incidentId: -1,
+            emailAddress: '',
+            errorMessage: '',
+            successMessage: ''
         }
         this.getIncidents = this.getIncidents.bind(this);
         this.createIncident = this.createIncident.bind(this);
@@ -30,31 +35,87 @@ class TaskBoardComponent extends Component {
         this.search = this.search.bind(this);
         this.clearSearch = this.clearSearch.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.sendInvitation = this.sendInvitation.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleKeyDown(e){
+    handleChange(event) {
+        event.preventDefault()
+        this.setState({
+            [event.target.name]: event.target.value,
+            errorMessage: '',
+            successMessage:''
+        })
+    }
+
+    sendInvitation(incidentId, emailAddress) {
+        const emailPattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        const popularEmailPattern = /.+@(gmail|yahoo|hotmail|aol)\.com$/;
+
+        if (!emailPattern.test(emailAddress) || popularEmailPattern.test(emailAddress)){
+            this.setState({
+                errorMessage: 'Please enter a valid company email address'
+            })
+            return
+        }
+
+        const collaboration = {
+            incidentId: incidentId,
+            emailAddress: emailAddress
+        }
+
+        IncidentDataService.inviteUserToCollaborate(collaboration)
+            .then(() => this.setState({
+                successMessage: 'Invitation sent!'
+            }))
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    this.setState({
+                        errorMessage: 'Please enter valid email with a domain different than your organization\'s domain'
+                    })
+                }
+                else{
+                    this.setState({
+                        errorMessage: "Unable to invite external user. Please contact support at support@claimmunity.com to report the issue."
+                    })
+                }
+            })
+    }
+
+    handleKeyDown(e) {
         if (e.key === 'Enter') {
             this.search();
-        }
-        else if (e.keyCode === 27){
+        } else if (e.keyCode === 27) {
             this.clearSearch();
         }
     }
 
     sortFieldDesc(field) {
-        this.setState({sortedIncidents: this.state.sortedIncidents.sort((a, b) => {
-            if (a[field] > b[field]) { return -1; }
-            if (b[field] > a[field]) { return 1; }
-            return 0;
-        })})
+        this.setState({
+            sortedIncidents: this.state.sortedIncidents.sort((a, b) => {
+                if (a[field] > b[field]) {
+                    return -1;
+                }
+                if (b[field] > a[field]) {
+                    return 1;
+                }
+                return 0;
+            })
+        })
     }
 
     sortFieldAsc(field) {
-        this.setState({sortedIncidents: this.state.sortedIncidents.sort((a, b) => {
-                if (a[field] > b[field]) { return 1; }
-                if (b[field] > a[field]) { return -1; }
+        this.setState({
+            sortedIncidents: this.state.sortedIncidents.sort((a, b) => {
+                if (a[field] > b[field]) {
+                    return 1;
+                }
+                if (b[field] > a[field]) {
+                    return -1;
+                }
                 return 0;
-            })})
+            })
+        })
     }
 
     handleClick(event) {
@@ -124,6 +185,10 @@ class TaskBoardComponent extends Component {
                 <td>{incident.status.status}</td>
                 <td><FiTruck/>&nbsp;{incident.vendor}</td>
                 <td><CgFileDocument/>&nbsp;{incident.referenceNumber}</td>
+                <td>
+                    <Button className="btn-sm btn-primary" onClick={() => this.setState({showInviteUserModal: true, incidentId: incident.id})}>Invite
+                        user</Button>
+                </td>
             </tr>
         });
 
@@ -165,12 +230,12 @@ class TaskBoardComponent extends Component {
                                 {this.state.showClearSearch &&
                                 <span className="input-group-append">
                                         <div className="input-group-text"> <i className="fa fa-times bg-transparent"
-                                                                                             onClick={this.clearSearch}/></div>
+                                                                              onClick={this.clearSearch}/></div>
                                     </span>
                                 }
                                 <span className="input-group-append">
                                         <div className="input-group-text"><i className="fa fa-search bg-transparent"
-                                                                                            onClick={this.search}/></div>
+                                                                             onClick={this.search}/></div>
                                     </span>
 
                             </div>
@@ -201,7 +266,8 @@ class TaskBoardComponent extends Component {
                                     </div>
                                 </th>
                                 <th className="th-sm" scope="col">PROGRESS</th>
-                                <th onClick={() => this.sortFieldAsc('status')} className="th-sm" scope="col">STATUS</th>
+                                <th onClick={() => this.sortFieldAsc('status')} className="th-sm" scope="col">STATUS
+                                </th>
                                 <th>VENDOR
                                     <div className="stacked-icons">
                                         <i className="fa fa-fw fa-sort-asc fa-small-size"
@@ -218,6 +284,8 @@ class TaskBoardComponent extends Component {
                                            onClick={() => this.sortFieldAsc('referenceNumber')}/>
                                     </div>
                                 </th>
+                                <th className="th-sm" scope="col">
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -231,6 +299,33 @@ class TaskBoardComponent extends Component {
                         </div>
                     </div>
 
+                    <Modal
+                        show={this.state.showInviteUserModal}
+                        onHide={() => this.setState({showInviteUserModal:false})}
+                        backdrop="dynamic"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Please enter the email address of the user you would like to invite</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {this.state.successMessage !== '' &&
+                            <div className="w-100 text-success">
+                                {this.state.successMessage}
+                            </div>}
+                            {this.state.errorMessage !== '' &&
+                            <div className="w-100 text-danger">
+                                {this.state.errorMessage}
+                            </div>}
+                            <div className="w-100">
+                                <input name="emailAddress" className="w-100" type="text" placeholder="Email address" onChange={this.handleChange}/>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button className="btn-primary" onClick={() => this.sendInvitation(this.state.incidentId, this.state.emailAddress)}>Send Invitation</Button>
+                            <Button variant="secondary" onClick={() => this.setState({showInviteUserModal:false})}>Close</Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         </IconContext.Provider>

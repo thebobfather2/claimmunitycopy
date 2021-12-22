@@ -112,7 +112,7 @@ class FormsListComponent extends Component {
                 .then(this.getForms)
                 .catch(response => {
                     this.setState({
-                        message: "An error occurred while delete form. Please contact support at support@claimmunity.com to report the issue."
+                        message: "An error occurred while deleting form. Please contact support at support@claimmunity.com to report the issue."
                     })
                 })
         }

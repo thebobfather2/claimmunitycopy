@@ -30,6 +30,10 @@ class IncidentDataService{
         }
         return axios.put(url);
     }
+
+    inviteUserToCollaborate(collaboration){
+        return axios.post(`${API_URL}/incidents/collaborate`, collaboration);
+    }
 }
 
 export default new IncidentDataService();
