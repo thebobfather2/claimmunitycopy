@@ -241,6 +241,7 @@ function SignUpComponent(props) {
                         <option value="SHIPPER">Shipper</option>
                         <option value="LSP">Logistics Service Provider</option>
                         <option value="CARRIER">Carrier</option>
+                        <option value="INSURANCE">Insurance</option>
                     </select>
                 </div>
 
