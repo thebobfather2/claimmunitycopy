@@ -79,7 +79,7 @@ class InvoiceComponent extends Component {
                             <div className="row float-md-right">
                                 <div className="col mr-0">
                                     <button type="button" className="btn btn-light"
-                                            onClick={() => this.props.history.push(`/payments`)}>Go To Payments
+                                            onClick={() => this.props.history.push(`/settlements`)}>Go To Settlements
                                     </button>
                                 </div>
                                 <div className="col ml-0">
