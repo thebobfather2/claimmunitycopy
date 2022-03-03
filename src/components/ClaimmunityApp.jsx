@@ -18,6 +18,7 @@ import ContactListComponent from "./contacts/ContactListComponent";
 import SettingsComponent from "./settings/SettingsComponent";
 import ActivateUserComponent from "./authentication/ActivateUserComponent";
 import ContactUsComponent from "./authentication/ContactUsComponent";
+import SettlementComponent from "./payments/SettlementComponent";
 
 function ClaimmunityApp() {
 
@@ -44,6 +45,7 @@ function ClaimmunityApp() {
                             <AuthenticatedRoute path="/doc-hub" component={DocHubListComponent}/>
                             <AuthenticatedRoute path="/docs/:incidentId" component={DocHubComponent}/>
                             <AuthenticatedRoute path="/invoice/:id" component={InvoiceComponent}/>
+                            <AuthenticatedRoute path="/settlements" component={SettlementComponent}/>
                             <AuthenticatedRoute path="/payments" component={InvoiceListComponent}/>
                             <AuthenticatedRoute path="/contacts" component={ContactListComponent}/>
                             <AuthenticatedRoute path="/settings" component={SettingsComponent}/>

@@ -32,12 +32,6 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: 'Payments',
-        path : '/payments',
-        icon : <RiIcons.RiSecurePaymentFill/>,
-        cName: 'nav-text'
-    },
-    {
         title: 'Contacts',
         path : '/contacts',
         icon : <RiIcons.RiContactsLine/>,
@@ -47,6 +41,12 @@ export const SidebarData = [
         title: 'Settings',
         path : '/settings',
         icon : <RiIcons.RiListSettingsLine/>,
+        cName: 'nav-text'
+    },
+    {
+        title: 'Settlements',
+        path : '/settlements',
+        icon : <RiIcons.RiSecurePaymentFill/>,
         cName: 'nav-text'
     }
     ]
