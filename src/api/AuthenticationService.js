@@ -3,6 +3,8 @@ import {API_URL} from "../Constants";
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 export const USER_TOKEN_SESSION_ATTRIBUTE_NAME = 'token'
+export const USER_PREMIUM_USER = 'premiumUser'
+
 
 class AuthenticationService {
 
@@ -14,11 +16,15 @@ class AuthenticationService {
         })
     }
 
-    registerSuccessfulLogin(username, token){
+    registerSuccessfulLogin(username, token, premiumUser){
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
         sessionStorage.setItem(USER_TOKEN_SESSION_ATTRIBUTE_NAME, this.createJwtToken(token));
+        sessionStorage.setItem(USER_PREMIUM_USER, premiumUser);
     }
 
+    updateUserToPremium(){
+        sessionStorage.setItem(USER_PREMIUM_USER, 'true');
+    }
     createJwtToken(token){
         return 'Bearer ' + token;
     }

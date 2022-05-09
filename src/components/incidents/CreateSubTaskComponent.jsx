@@ -1,22 +1,8 @@
 import React, {Component} from "react";
-import {
-    AiFillCheckCircle,
-    AiFillClockCircle,
-    AiOutlineCheckSquare,
-    AiOutlineClose,
-    AiOutlineDelete
-} from "react-icons/ai";
-import {Link} from "react-router-dom";
+import {AiFillClockCircle, AiOutlineClose} from "react-icons/ai";
 import TaskManagementDataService from "../../api/TaskManagementDataService";
 import '../../static/css/TaskManagementBoard.css';
-import {
-    AiOutlineArrowRight,
-    BsListTask,
-    BsPersonPlusFill,
-    BsPlusSquareFill,
-    BsThreeDots,
-    MdDescription
-} from "react-icons/all";
+import {AiOutlineArrowRight, BsListTask, BsPersonPlusFill, MdDescription} from "react-icons/all";
 import moment from "moment";
 
 class CreateSubTaskComponent extends Component {

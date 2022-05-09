@@ -5,14 +5,23 @@ import AccountSettingsComponent from "./AccountSettingsComponent";
 import NotificationSettingsComponent from "./NotificationSettingsComponent";
 import PaymentSettingsComponent from "./PaymentSettingsComponent";
 import OrganizationSettingsComponent from "./OrganizationSettingsComponent";
+import UpgradeComponent from "./UpgradeComponent";
 
 class SettingsComponent extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            view: 'ACCOUNTS'
+            view: props.match.params.view
         }
+        this.changeType = this.changeType.bind(this)
+    }
+
+    changeType(type){
+        this.setState({
+            view: type
+        })
     }
 
     render() {
@@ -22,7 +31,7 @@ class SettingsComponent extends Component {
 
                     <div className="row sideBar">
 
-                        <div className="row sideBar-body"  onClick={ () => this.setState({view: 'ACCOUNTS'})}>
+                        <div className="row sideBar-body" onClick={() => this.setState({view: 'accounts'})}>
                             <div className="col-sm-3 col-xs-3 mt-3">
                                 <BsPersonCheck size="25"/>
                             </div>
@@ -36,7 +45,7 @@ class SettingsComponent extends Component {
                             </div>
                         </div>
 
-                        <div className="row sideBar-body"  onClick={ () => this.setState({view: 'NOTIFICATIONS'})}>
+                        <div className="row sideBar-body" onClick={() => this.setState({view: 'notifications'})}>
                             <div className="col-sm-3 col-xs-3 mt-3">
                                 <IoMdNotificationsOutline size="25"/>
                             </div>
@@ -50,7 +59,7 @@ class SettingsComponent extends Component {
                             </div>
                         </div>
 
-                        <div className="row sideBar-body" onClick={ () => this.setState({view: 'ORGANIZATION'})}>
+                        <div className="row sideBar-body" onClick={() => this.setState({view: 'organization'})}>
                             <div className="col-sm-3 col-xs-3 mt-3">
                                 <div>
                                     <GoOrganization size="25"/>
@@ -66,7 +75,7 @@ class SettingsComponent extends Component {
                             </div>
                         </div>
 
-                        <div className="row sideBar-body" onClick={() => this.setState({view: 'PAYMENTS'})}>
+                        <div className="row sideBar-body" onClick={() => this.setState({view: 'payments'})}>
                             <div className="col-sm-3 col-xs-3 mt-3">
                                 <div>
                                     <MdAccountBalance size="25"/>
@@ -88,10 +97,11 @@ class SettingsComponent extends Component {
             </div>
 
             <div className="settings">
-            {this.state.view === 'ACCOUNTS' && <AccountSettingsComponent/>}
-            {this.state.view === 'NOTIFICATIONS' && <NotificationSettingsComponent/>}
-            {this.state.view === 'ORGANIZATION' && <OrganizationSettingsComponent/>}
-            {this.state.view === 'PAYMENTS' && <PaymentSettingsComponent/>}
+                {this.state.view === 'accounts' && <AccountSettingsComponent changeType={this.changeType}/>}
+                {this.state.view === 'notifications' && <NotificationSettingsComponent/>}
+                {this.state.view === 'organization' && <OrganizationSettingsComponent changeType={this.changeType}/>}
+                {this.state.view === 'payments' && <PaymentSettingsComponent/>}
+                {this.state.view === 'upgrade' && <UpgradeComponent history={this.props.history} changeType={this.changeType}/>}
             </div>
 
         </div>

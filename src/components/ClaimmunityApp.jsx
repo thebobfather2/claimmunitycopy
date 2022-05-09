@@ -19,6 +19,7 @@ import SettingsComponent from "./settings/SettingsComponent";
 import ActivateUserComponent from "./authentication/ActivateUserComponent";
 import ContactUsComponent from "./authentication/ContactUsComponent";
 import SettlementComponent from "./payments/SettlementComponent";
+import StripeCheckoutComponent from "./payments/StripeCheckoutComponent";
 
 function ClaimmunityApp() {
 
@@ -48,7 +49,8 @@ function ClaimmunityApp() {
                             <AuthenticatedRoute path="/settlements" component={SettlementComponent}/>
                             <AuthenticatedRoute path="/payments" component={InvoiceListComponent}/>
                             <AuthenticatedRoute path="/contacts" component={ContactListComponent}/>
-                            <AuthenticatedRoute path="/settings" component={SettingsComponent}/>
+                            <AuthenticatedRoute path="/settings/:view" component={SettingsComponent}/>
+                            <AuthenticatedRoute path="/checkout/:licenses" component={StripeCheckoutComponent}/>
 
                             <Route component={ErrorComponent}/>
                         </Switch>

@@ -8,10 +8,6 @@ import {Image} from "react-bootstrap";
 
 function Sidebar() {
 
-    {
-
-    }
-
     const [sidebar, setSidebar] = useState(false)
 
     const showSidebar = () => setSidebar(!sidebar)
@@ -35,7 +31,7 @@ function Sidebar() {
                         <li>
                             <Image src={logo}/>
                         </li>
-                        <li>
+
                             {SidebarData.map((item, index) => {
                                 return (
                                     <li key={index} className={item.cName}>
@@ -46,7 +42,7 @@ function Sidebar() {
                                     </li>
                                 )
                             })}
-                        </li>
+
                     </ul>
                 </div>
             </IconContext.Provider>

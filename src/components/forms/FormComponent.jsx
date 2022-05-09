@@ -461,7 +461,7 @@ class FormComponent extends Component {
                 }
             }
         }
-        const numberRegEx = /\-?\d*\.?\d{1,2}/;
+        const numberRegEx = /-?\d*\.?\d{1,2}/;
 
         this.state.commodities.map((commodity) => {
 

@@ -173,7 +173,14 @@ function SignUpComponent(props) {
             }
         SignUpDataService.signUpUser(request)
             .then(() => setSuccessMessage("Your account was successfully created. Please check your email to activate your account before logging in."))
-            .catch(() => setErrorMessage('Error occurred while creating new user. Please contact us at support@claimmunity.com.'))
+            .catch(function (error){
+                if (error.response && error.response.status === 400) {
+                    console.log(error.response)
+                    setErrorMessage(error.response.data)
+                } else {
+                    setErrorMessage('Error occurred while creating new user. Please contact us at support@claimmunity.com.')
+                }
+            })
     }
 
     const formatPhone = (value) => {
