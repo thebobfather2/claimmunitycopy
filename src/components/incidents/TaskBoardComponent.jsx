@@ -8,7 +8,7 @@ import {FaConnectdevelop} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import '../../static/css/TaskManagementBoard.css';
 import '../../App.css';
-import {NUM_OF_RESULTS_PER_PAGE} from "../../Constants";
+import {NUM_OF_FREE_INCIDENTS_ALLOWED, NUM_OF_RESULTS_PER_PAGE} from "../../Constants";
 import {USER_PREMIUM_USER} from "../../api/AuthenticationService";
 
 
@@ -27,8 +27,8 @@ class TaskBoardComponent extends Component {
             emailAddress: '',
             errorMessage: '',
             successMessage: '',
-            premiumUser: sessionStorage.getItem(USER_PREMIUM_USER),
-            totalCount: 0
+            totalCount: 0,
+            limitedAccess: true
         }
         this.getIncidents = this.getIncidents.bind(this);
         this.createIncident = this.createIncident.bind(this);
@@ -142,7 +142,8 @@ class TaskBoardComponent extends Component {
                     this.setState({
                         incidents: response.data.incidents,
                         sortedIncidents: response.data.incidents,
-                        totalCount: response.data.totalCount
+                        totalCount: response.data.totalCount,
+                        limitedAccess: sessionStorage.getItem(USER_PREMIUM_USER) === 'false' && response.data.totalCount >= NUM_OF_FREE_INCIDENTS_ALLOWED
                     })
                 }
             })
@@ -190,7 +191,7 @@ class TaskBoardComponent extends Component {
                 <td><FiTruck/>&nbsp;{incident.vendor}</td>
                 <td><CgFileDocument/>&nbsp;{incident.referenceNumber}</td>
                 <td>
-                    <Button className="btn-sm btn-primary" onClick={() => this.setState({showInviteUserModal: true, incidentId: incident.id})}>Invite
+                    <Button className="btn-sm btn-primary" onClick={() => this.setState({showInviteUserModal: true, incidentId: incident.id})} disabled={this.state.limitedAccess}>Invite
                         user</Button>
                 </td>
             </tr>
@@ -223,7 +224,7 @@ class TaskBoardComponent extends Component {
                     <div className="pull-left text-white font-weight-bold bg-app">My Freight Incidents</div>
                     <div className="pull-right bg-app">
                         <button type="button" className="btn-light btn-rounded"
-                                onClick={this.createIncident}>+ Create New Incident
+                                onClick={this.createIncident} disabled={this.state.limitedAccess}>+ Create New Incident
                         </button>
                     </div>
                     <div className="row searchBox">
@@ -249,13 +250,14 @@ class TaskBoardComponent extends Component {
 
                     {this.state.message && <div className="alert alert-danger">{this.state.message}</div>}
 
-                    {this.state.premiumUser === 'false' && this.state.totalCount > 25 &&
+                    {this.state.limitedAccess &&
                     <div>
                         <button className="btn-primary btn-upgrade"
                                 onClick={() => this.props.history.push(`/settings/upgrade`)}>Upgrade To Premium<br/> To Unlock Unlimited <br/> Incidents</button>
                     </div>
                     }
-                    <div className={this.state.premiumUser === 'false' && this.state.totalCount > 25 ? "disable-div table-responsive": "table-responsive"}>
+
+                    <div className={this.state.limitedAccess ? "disable-div table-responsive": "table-responsive"}>
                         <table className="table table-responsive-lg">
                             <thead className="table-header">
                             <tr>
