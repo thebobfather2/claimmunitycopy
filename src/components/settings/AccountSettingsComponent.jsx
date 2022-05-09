@@ -36,6 +36,11 @@ class AccountSettingsComponent extends Component {
         this.updateUser = this.updateUser.bind(this)
         this.clearPasswordForm = this.clearPasswordForm.bind(this)
         this.resetUserForm = this.resetUserForm.bind(this)
+        this.changeType = this.changeType.bind(this)
+    }
+
+    changeType(type){
+        this.props.changeType(type)
     }
 
     resetUserForm(){
@@ -80,8 +85,6 @@ class AccountSettingsComponent extends Component {
             workPhone: this.state.workPhone,
             zipCode: this.state.zipCode
         }
-
-        console.log(this.state.userId)
 
         UserDataService.updateUser(this.state.userId, user)
             .then(() => this.getUser())
@@ -226,6 +229,16 @@ class AccountSettingsComponent extends Component {
                     <button type="button" onClick={this.updateUserPassword} className="btn btn-primary col-sm-4">Change password</button>
 
                 </form>
+            </div>
+
+            <div className="row sideBar pb-3 account-main">
+                <div className="col-sm-4">
+                    <div className="font-weight-bold"><label>Change plan</label></div>
+                    <div><small>View plan details</small></div>
+                </div>
+                <div className="col-sm-4 mt-2">
+                    <button className="btn btn-primary" onClick={() => this.changeType('upgrade')}>Change</button>
+                </div>
             </div>
 
             <div id="changeUserForm" className="form-group change-user-div">

@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import '../../static/css/TaskManagementBoard.css';
 import '../../App.css';
 import {NUM_OF_RESULTS_PER_PAGE} from "../../Constants";
+import {USER_PREMIUM_USER} from "../../api/AuthenticationService";
 
 
 class TaskBoardComponent extends Component {
@@ -25,7 +26,9 @@ class TaskBoardComponent extends Component {
             incidentId: -1,
             emailAddress: '',
             errorMessage: '',
-            successMessage: ''
+            successMessage: '',
+            premiumUser: sessionStorage.getItem(USER_PREMIUM_USER),
+            totalCount: 0
         }
         this.getIncidents = this.getIncidents.bind(this);
         this.createIncident = this.createIncident.bind(this);
@@ -138,7 +141,8 @@ class TaskBoardComponent extends Component {
                 if (response.data.totalCount > 0) {
                     this.setState({
                         incidents: response.data.incidents,
-                        sortedIncidents: response.data.incidents
+                        sortedIncidents: response.data.incidents,
+                        totalCount: response.data.totalCount
                     })
                 }
             })
@@ -245,7 +249,13 @@ class TaskBoardComponent extends Component {
 
                     {this.state.message && <div className="alert alert-danger">{this.state.message}</div>}
 
-                    <div className="table-responsive">
+                    {this.state.premiumUser === 'false' && this.state.totalCount > 25 &&
+                    <div>
+                        <button className="btn-primary btn-upgrade"
+                                onClick={() => this.props.history.push(`/settings/upgrade`)}>Upgrade To Premium<br/> To Unlock Unlimited <br/> Incidents</button>
+                    </div>
+                    }
+                    <div className={this.state.premiumUser === 'false' && this.state.totalCount > 25 ? "disable-div table-responsive": "table-responsive"}>
                         <table className="table table-responsive-lg">
                             <thead className="table-header">
                             <tr>
@@ -302,7 +312,6 @@ class TaskBoardComponent extends Component {
                     <Modal
                         show={this.state.showInviteUserModal}
                         onHide={() => this.setState({showInviteUserModal:false})}
-                        backdrop="dynamic"
                         keyboard={false}
                     >
                         <Modal.Header closeButton>

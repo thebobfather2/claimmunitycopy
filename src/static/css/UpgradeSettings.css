@@ -1,0 +1,19 @@
+.upgrade-main label{
+    font-size: 13px;
+}
+
+.plan{
+    border: 5px solid #317ABB;
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.btn-rounded{
+    border-radius: 25px;
+}

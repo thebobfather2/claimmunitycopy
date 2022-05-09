@@ -5,6 +5,7 @@ import DashboardDataService from "../../api/DashboardDataService";
 import DoughnutChartComponent from "./DoughnutChartComponent";
 import LineChartComponent from "./LineChartComponent";
 import BarChartComponent from "./BarChartComponent";
+import {USER_PREMIUM_USER} from "../../api/AuthenticationService";
 
 
 let osdLabels = ['OPEN', 'CLOSED', 'CONVERTED'];
@@ -35,10 +36,12 @@ class DashboardComponent extends Component {
             consignorMap: [],
             consignors: [], consignorCount: [],
             consignees: [], consigneeCount: [],
-            mounted: false
+            mounted: false,
+            premiumUser: sessionStorage.getItem(USER_PREMIUM_USER)
         }
         this.populateDashboard = this.populateDashboard.bind(this)
     }
+
 
     componentDidMount() {
         this.populateDashboard()
@@ -85,7 +88,6 @@ class DashboardComponent extends Component {
                         {this.state.mounted && <DoughnutChartComponent labels={osdLabels} data={this.state.osdSummary}/>}
                     </div>
                     <div className="col-sm-6">
-                        <vl/>
                         {this.state.mounted &&
                         <DoughnutChartComponent labels={osdAmountLabels} data={this.state.osdDollarAmounts}
                                                 customLabel="$"/>}
@@ -102,7 +104,6 @@ class DashboardComponent extends Component {
                         {this.state.mounted && <DoughnutChartComponent labels={claimLabels} data={this.state.claimSummary}/>}
                     </div>
                     <div className="col-sm-6">
-                        <vl/>
                         {this.state.mounted &&
                         <DoughnutChartComponent labels={claimAmountLabels} data={this.state.claimDollarAmounts}
                                                 customLabel="$"/>}
@@ -136,6 +137,12 @@ class DashboardComponent extends Component {
                 </div>
             </div>
 
+            {this.state.premiumUser === 'false' &&
+                <button className="btn btn-primary btn-upgrade"
+                        onClick={() => this.props.history.push(`/settings/upgrade`)}>Unlock By<br/> Upgrading To<br/> Premium</button>
+            }
+
+            <div className={this.state.premiumUser === 'false' ? "disable-div": ""}>
             <div className="form-group chart mr-1">
 
                 <div className="chart-title"><h5>OSD/Claims Trend</h5></div>
@@ -202,6 +209,8 @@ class DashboardComponent extends Component {
                         }
                     </div>
                 </div>
+            </div>
+
             </div>
 
         </div>

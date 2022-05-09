@@ -39,7 +39,7 @@ export const SidebarData = [
     },
     {
         title: 'Settings',
-        path : '/settings',
+        path : '/settings/accounts',
         icon : <RiIcons.RiListSettingsLine/>,
         cName: 'nav-text'
     },

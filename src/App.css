@@ -251,3 +251,17 @@ ul {
   width: 200px;
   font-size: 13px;
 }
+
+.disable-div{
+  opacity: 0.1;
+  position: relative;
+  bottom:70px;
+}
+
+.btn-upgrade{
+  position: relative;
+  top: 150px;
+  right:20px;
+  z-index: 10;
+  background-color: grey;
+}

@@ -99,7 +99,7 @@ class LoginComponent extends Component {
             .executeJwtAuthenticationService(this.state.username, this.state.password)
             .then(
                 (response) => {
-                    AuthenticationService.registerSuccessfulLogin(this.state.username, response.data.token)
+                    AuthenticationService.registerSuccessfulLogin(this.state.username, response.data.token, response.data.premiumUser)
                     this.props.history.push(`/dashboard`) //react router history API - check it out
                 }
             )

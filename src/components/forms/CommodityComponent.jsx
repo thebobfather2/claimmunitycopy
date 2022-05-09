@@ -14,7 +14,6 @@ class CommodityComponent extends Component {
         }
         this.removeCommodity = this.removeCommodity.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        console.log(this.state.commodity)
     }
 
     handleChange(event) {

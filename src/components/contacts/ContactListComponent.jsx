@@ -245,7 +245,7 @@ class ContactListComponent extends Component {
                             {
                                 this.state.contacts.map(
                                     contact => {
-                                        return (<div className="row sideBar-body"
+                                        return (<div className="row sideBar-body" key={contact.userId}
                                                      onClick={() => this.updateSelectedContact(contact)}>
                                             <div className="col-sm-3 col-xs-3 sideBar-avatar">
                                                 <div className="avatar-icon">
