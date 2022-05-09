@@ -10,7 +10,6 @@ class PaymentDataService {
     }
 
     createSubscription(data){
-        console.log(`Recurrent payment....`)
         return axios
             .post(`${API_URL}/payment/recurrent`, data)
     }

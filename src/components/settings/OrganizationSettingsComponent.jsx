@@ -40,9 +40,7 @@ class OrganizationSettingsComponent extends Component {
         const currentUser = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
         const domain = currentUser.substring(currentUser.lastIndexOf("@") +1)
         const newUserDomain = license.emailAddress.substring(license.emailAddress.lastIndexOf("@") +1)
-
-        console.log(domain)
-
+        
         if (domain !== newUserDomain){
             this.setState({
                 errorMessage: 'The invited user should be part of the organization'
