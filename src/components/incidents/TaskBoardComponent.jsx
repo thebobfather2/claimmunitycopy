@@ -146,6 +146,11 @@ class TaskBoardComponent extends Component {
                         limitedAccess: sessionStorage.getItem(USER_PREMIUM_USER) === 'false' && response.data.totalCount >= NUM_OF_FREE_INCIDENTS_ALLOWED
                     })
                 }
+                else {
+                    this.setState({
+                        limitedAccess: false
+                    })
+                }
             })
             .catch(response => {
                 this.setState({
