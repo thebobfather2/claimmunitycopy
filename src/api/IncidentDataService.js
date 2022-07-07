@@ -34,6 +34,13 @@ class IncidentDataService{
     inviteUserToCollaborate(collaboration){
         return axios.post(`${API_URL}/incidents/collaborate`, collaboration);
     }
+
+    exportIncident(id,format){
+        return axios.get(`${API_URL}/incidents/export/${id}/${format}`,
+            {
+                responseType: 'blob'
+            });
+    }
 }
 
 export default new IncidentDataService();

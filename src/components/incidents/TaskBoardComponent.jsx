@@ -4,13 +4,13 @@ import IncidentDataService from "../../api/IncidentDataService";
 import {CgFileDocument} from "react-icons/cg";
 import {FiTruck} from "react-icons/fi";
 import {IconContext} from "react-icons";
-import {FaConnectdevelop} from "react-icons/fa";
+import {FaConnectdevelop, FaFileCsv} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import '../../static/css/TaskManagementBoard.css';
 import '../../App.css';
 import {NUM_OF_FREE_INCIDENTS_ALLOWED, NUM_OF_RESULTS_PER_PAGE} from "../../Constants";
 import {USER_PREMIUM_USER} from "../../api/AuthenticationService";
-
+import FileDownload from "js-file-download";
 
 class TaskBoardComponent extends Component {
 
@@ -40,6 +40,7 @@ class TaskBoardComponent extends Component {
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.sendInvitation = this.sendInvitation.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.exportIncident = this.exportIncident.bind(this);
     }
 
     handleChange(event) {
@@ -50,7 +51,6 @@ class TaskBoardComponent extends Component {
             successMessage:''
         })
     }
-
     sendInvitation(incidentId, emailAddress) {
         const emailPattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         const popularEmailPattern = /.+@(gmail|yahoo|hotmail|aol)\.com$/;
@@ -176,6 +176,18 @@ class TaskBoardComponent extends Component {
         }
     }
 
+    exportIncident(id, format){
+        if (window.confirm("Export incident data to CSV?")) {
+            IncidentDataService.exportIncident(id, format)
+                .then(response => FileDownload(response.data, `incident_${id}_${new Date().getTime()}.csv`))
+                .catch(() => {
+                    this.setState({
+                        message: `An error occurred while exporting incident to ${format} . Please contact support at support@claimmunity.com to report the issue.`
+                    })
+                })
+        }
+    }
+
     render() {
 
         const {sortedIncidents, currentPage} = this.state;
@@ -198,6 +210,9 @@ class TaskBoardComponent extends Component {
                 <td>
                     <Button className="btn-sm btn-primary" onClick={() => this.setState({showInviteUserModal: true, incidentId: incident.id})} disabled={this.state.limitedAccess}>Invite
                         user</Button>
+                </td>
+                <td>
+                   <FaFileCsv className="ml-3" onClick={() => this.exportIncident(incident.id, 'CSV')} size="30"/>
                 </td>
             </tr>
         });
@@ -301,7 +316,9 @@ class TaskBoardComponent extends Component {
                                            onClick={() => this.sortFieldAsc('referenceNumber')}/>
                                     </div>
                                 </th>
-                                <th className="th-sm" scope="col">
+                                <th className="th-sm" scope="col">INVITE
+                                </th>
+                                <th className="th-sm" scope="col">EXPORT
                                 </th>
                             </tr>
                             </thead>
