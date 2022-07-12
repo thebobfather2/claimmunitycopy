@@ -116,10 +116,15 @@ class TaskManagementBoard extends Component {
                             hasCommodities: data.hasCommodities
                         })}
             )
-            .catch(() => {
-                this.setState({
-                    errorMessage: "An error occurred while retrieving the tasks. Please contact support at support@claimmunity.com to report the issue."
-                })
+            .catch(function (error) {
+                if (error.response && error.response.status === 400) {
+                    this.props.history.push('/task-board');
+                }
+                else {
+                    this.setState({
+                        errorMessage: "An error occurred while retrieving the tasks. Please contact support at support@claimmunity.com to report the issue."
+                    })
+                }
             })
     }
 
