@@ -63,6 +63,17 @@ class DocHubComponent extends Component {
     getAllDocuments() {
         FileDataService.getAllDocuments(this.state.incidentId)
             .then(response => this.setState({documents: response.data}))
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    this.props.history.push('/doc-hub');
+                }
+                else {
+                    this.setState({
+                        errorMessage: "An error occurred while retrieving the documents and images. Please contact support at support@claimmunity.com to report the issue."
+                    })
+                }
+            })
+
     }
 
     // On file select (from the pop up)
