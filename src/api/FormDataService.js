@@ -11,8 +11,8 @@ class FormDataService{
         return axios.delete(`${API_URL}/forms/${id}`)
     }
 
-    getForm(id){
-        return axios.get(`${API_URL}/forms/${id}`);
+    getForm(id, incidentId){
+        return axios.get(`${API_URL}/forms/${id}/${incidentId}`);
     }
 
     createForm(form){

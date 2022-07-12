@@ -116,7 +116,7 @@ class TaskManagementBoard extends Component {
                             hasCommodities: data.hasCommodities
                         })}
             )
-            .catch(function (error) {
+            .catch((error) => {
                 if (error.response && error.response.status === 400) {
                     this.props.history.push('/task-board');
                 }

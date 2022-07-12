@@ -139,6 +139,16 @@ class FormComponent extends Component {
     getIncident() {
         IncidentDataService.getIncident(this.state.incidentId)
             .then(response => this.setState({incidentType: response.data.type}))
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    this.props.history.push('/forms');
+                }
+                else {
+                    this.setState({
+                        errorMessage: "An error occurred while retrieving the form. Please contact support at support@claimmunity.com to report the issue."
+                    })
+                }
+            })
     }
 
     handleNotesCharacterCount(event) {
@@ -504,7 +514,7 @@ class FormComponent extends Component {
     }
 
     getForm() {
-        FormDataService.getForm(this.state.formId)
+        FormDataService.getForm(this.state.formId, this.state.incidentId)
             .then((response) => {
                 let data = response.data;
                 if (data.claim) {
@@ -580,10 +590,15 @@ class FormComponent extends Component {
                     this.setState({charsLeft: this.state.maxChars - this.state.notes.length})
                 }
             })
-            .catch(() => {
-                this.setState({
-                    message: "An error occurred while retrieving the forms. Please contact support at support@claimmunity.com to report the issue."
-                })
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    this.props.history.push('/forms');
+                }
+                else {
+                    this.setState({
+                        errorMessage: "An error occurred while retrieving the form. Please contact support at support@claimmunity.com to report the issue."
+                    })
+                }
             })
     }
 
